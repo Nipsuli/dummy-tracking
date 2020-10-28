@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  watch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 8080:8080
+    command: ["run", "--allow-net", "--unstable", "--watch", "main.ts"]
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 8080:8080
+    command: ["run", "--allow-net", "--unstable", "main.ts"]
+
