@@ -1,6 +1,6 @@
 import { onSignal, serve } from "./deps.ts";
 
-const server = serve({ hostname: "0.0.0.0", port: 8080 });
+const server = serve({ hostname: "0.0.0.0", port: parseInt(Deno.env.get("PORT") || "8080") });
 console.log("Starting...");
 
 const decoder = new TextDecoder();
@@ -12,7 +12,7 @@ const run = async () => {
     const reqj = {
       method: req.method,
       path: req.url,
-      headers: req.headers,
+      headers: Object.fromEntries(req.headers.entries()),
       body,
     };
     console.log(`${JSON.stringify(reqj)}`);

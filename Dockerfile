@@ -1,7 +1,5 @@
 FROM hayd/alpine-deno:1.4.6
 
-EXPOSE 8080 
-
 WORKDIR /app
 
 # Prefer not to run as root.
@@ -17,4 +15,4 @@ ADD . .
 # Compile the main app so that it doesn't need to be compiled each startup/entry.
 RUN deno cache --unstable main.ts
 
-CMD ["run", "--allow-net", "main.ts"]
+CMD ["run", "--allow-net", "--allow-env", "--unstable", "main.ts"]

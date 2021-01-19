@@ -9,7 +9,9 @@ services:
       - .:/app
     ports:
       - 8080:8080
-    command: ["run", "--allow-net", "--unstable", "--watch", "main.ts"]
+    command: ["run", "--allow-net", "--allow-env", "--unstable", "--watch", "main.ts"]
+    environment:
+      - PORT=8080
   app:
     build:
       context: .
@@ -18,5 +20,7 @@ services:
       - .:/app
     ports:
       - 8080:8080
-    command: ["run", "--allow-net", "--unstable", "main.ts"]
+    command: ["run", "--allow-net", "--allow-env", "--unstable", "main.ts"]
+    environment:
+      - PORT=8080
 
